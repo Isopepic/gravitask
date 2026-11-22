@@ -1,7 +1,6 @@
 <?php
-$db_host = 'localhost';
-$db_name = '';
-$db_user = '';
-$db_pass = '';
-$llm_key = '';
-
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'gravitask');
+define('LLM_KEY', '');
