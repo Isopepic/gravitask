@@ -77,15 +77,15 @@ function getEvent($userId, $id) {
     return $rows ? $rows[0] : null;
 }
 
-function addEvent($userId, $type, $name, $description, $deadline, $weight) {
+function addEvent($userId, $event) {
     $sql = "INSERT INTO events (user_id, type, name, description, deadline, weight) VALUES (?, ?, ?, ?, ?, ?)";
-    $id = run($sql, "issssi", [$userId, $type, $name, $description, $deadline, $weight]);
+    $id = run($sql, "issssi", [$userId, $event['type'], $event['name'], $event['description'], $event['deadline'], $event['weight']]);
     return getEvent($userId, $id);
 }
 
-function updateEvent($userId, $id, $type, $name, $description, $deadline, $weight) {
+function updateEvent($userId, $id, $fields) {
     $sql = "UPDATE events SET type = ?, name = ?, description = ?, deadline = ?, weight = ? WHERE id = ? AND user_id = ?";
-    run($sql, "ssssiiii", [$type, $name, $description, $deadline, $weight, $id, $userId]);
+    run($sql, "ssssiii", [$fields['type'], $fields['name'], $fields['description'], $fields['deadline'], $fields['weight'], $id, $userId]);
     return getEvent($userId, $id);
 }
 
