@@ -1,0 +1,56 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #F5EFE6;
+    color: #29211B;
+    font-family: 'Arial', sans-serif;
+
+}
+
+
+
+.authlinks {
+    display:flex;
+    align-items: center;
+    gap: 30px;
+    padding: 12px 22px;
+    border-radius: 8px;
+}
+
+.authlinks a {
+    text-decoration: none;
+    color:#29211B;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 5%;
+    border-bottom: 1px solid #D8CCBE;
+    text-decoration: none;
+    color: #29211B;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #29211B;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+}
+
+#reg-button {
+    background-color: #4C3B2D;
+    color: #FFFFFF;
+    padding: 8px 20px;
+    border-radius: 8px;
+
+}
+
