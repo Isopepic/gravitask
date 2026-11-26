@@ -31,7 +31,8 @@ if ($action == 'postpone') {
         $newDeadline .= ' 23:59:00';
     }
     $e = getEvent($userId, $id);
-    $moved = updateEvent($userId, $id, $e['type'], $e['name'], $e['description'], $newDeadline, $e['weight']);
+    $e['deadline'] = $newDeadline;
+    $moved = updateEvent($userId, $id, $e);
     jsonOut(['ok' => true, 'event' => $moved]);
 }
 jsonError('unknown action', 400);
