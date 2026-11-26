@@ -102,7 +102,7 @@ function setStatus($userId, $id, $status) {
 function validateEvent($data) {
   $type = $data['type'] ?? '';
   if ($type !== 'task' && $type !== 'happening') {
-    return "type must be  either task or happening";
+    return "type must be either task or happening";
   }
 
   $name = trim($data['name'] ?? '');
@@ -125,7 +125,7 @@ function validateEvent($data) {
   }
   $dt = DateTime::createFromFormat('Y-m-d H:i:s', $deadline);
   if (!$dt || $dt->format('Y-m-d H:i:s') !== $deadline) {
-    return "deadline must be in format YYYY-MM-DD HH:MM:SS, for example: 2023-12-31 23:59:00";
+    return "Please pick a valid date and time";
   }
 
   return [

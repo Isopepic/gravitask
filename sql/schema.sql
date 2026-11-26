@@ -1,4 +1,4 @@
---Author: Mauricio Letort
+-- Author: Mauricio Letort
 CREATE DATABASE IF NOT EXISTS gravitask;
 USE gravitask;
 
