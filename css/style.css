@@ -47,10 +47,89 @@ body {
 }
 
 #reg-button {
-    background-color: #4C3B2D;
+    background-color: #29221C;
     color: #FFFFFF;
     padding: 8px 20px;
     border-radius: 8px;
 
 }
 
+
+
+
+
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 650px;
+    padding: 40px 5%;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.hero-text h1 {
+
+    font-family: Georgia, "Times New Roman";
+    font-size: 80px;
+    font-weight: normal;
+    margin: 45px 54px 45px;
+    white-space: nowrap;
+}
+
+.hero-text p {
+
+    font-family: DM Sans, "Arial";
+    font-size: 18px;
+    font-weight: normal;
+    margin: 53px 54px 53px;
+    max-width: 270px;
+    line-height: 1.2;
+}
+
+.hero-buttons {
+
+    font-family: DM Sans, "Arial";
+    font-size: 18px;
+    font-weight: normal;
+    margin: 45px 30px 45px;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 10px 22px;
+    border-radius: 8px;
+}
+
+
+.hero-buttons a {
+    text-decoration: none;
+    color:#29211B;
+}
+
+.hero-buttons .hero-register {
+    background-color: #29221C;
+    font-size: 17px;
+    color: #FFFFFF;
+    padding: 8px 20px;
+    border-radius: 8px;
+
+}
+
+.hero-login {
+    background-color: #FFFFFF;
+    color: #29221C;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border-color: #29221C;
+
+}
+
+
+.study-image {
+    width: 55%;
+    height: auto;
+    object-fit: contain;
+}
