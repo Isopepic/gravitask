@@ -77,15 +77,15 @@ function getEvent($userId, $id) {
     return $rows ? $rows[0] : null;
 }
 
-function addEvent($userId, $type, $name, $description, $deadline, $weight) {
+function addEvent($userId, $event) {
     $sql = "INSERT INTO events (user_id, type, name, description, deadline, weight) VALUES (?, ?, ?, ?, ?, ?)";
-    $id = run($sql, "issssi", [$userId, $type, $name, $description, $deadline, $weight]);
+    $id = run($sql, "issssi", [$userId, $event['type'], $event['name'], $event['description'], $event['deadline'], $event['weight']]);
     return getEvent($userId, $id);
 }
 
-function updateEvent($userId, $id, $type, $name, $description, $deadline, $weight) {
+function updateEvent($userId, $id, $fields) {
     $sql = "UPDATE events SET type = ?, name = ?, description = ?, deadline = ?, weight = ? WHERE id = ? AND user_id = ?";
-    run($sql, "ssssiiii", [$type, $name, $description, $deadline, $weight, $id, $userId]);
+    run($sql, "ssssiii", [$fields['type'], $fields['name'], $fields['description'], $fields['deadline'], $fields['weight'], $id, $userId]);
     return getEvent($userId, $id);
 }
 
@@ -102,7 +102,7 @@ function setStatus($userId, $id, $status) {
 function validateEvent($data) {
   $type = $data['type'] ?? '';
   if ($type !== 'task' && $type !== 'happening') {
-    return "type must be task or happening";
+    return "type must be  either task or happening";
   }
 
   $name = trim($data['name'] ?? '');
@@ -112,16 +112,20 @@ function validateEvent($data) {
 
   $weight = (int) ($data['weight'] ?? 0);
   if ($weight < 1 || $weight > 10) {
-    return "weight must be between 1 and 10";
+    return "weight must be between 1 and 10, 1 being the least important and 10 the most important";
   }
 
   $deadline = trim($data['deadline'] ?? '');
+  $deadline = str_replace('T', ' ', $deadline);                     
+  if (preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/', $deadline)) {  
+    $deadline .= ':00';}
+
   if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $deadline)) {
     $deadline .= ' 23:59:00'; 
   }
   $dt = DateTime::createFromFormat('Y-m-d H:i:s', $deadline);
   if (!$dt || $dt->format('Y-m-d H:i:s') !== $deadline) {
-    return "deadline must be in format YYYY-MM-DD HH:MM:SS";
+    return "deadline must be in format YYYY-MM-DD HH:MM:SS, for example: 2023-12-31 23:59:00";
   }
 
   return [
