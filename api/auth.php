@@ -1,6 +1,7 @@
 <?php
 // Author: Ismaël
 require_once 'util.php';
+require_once 'db.php';
 
 function makeTicket() {
     $b = random_bytes(16);
@@ -17,5 +18,3 @@ function requireUser() {
     }
     return $user['id'];
 }
-
-function getUserByTicket($t) { return ['id' => 1]; }

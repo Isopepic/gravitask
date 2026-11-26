@@ -1,5 +1,6 @@
 <?php
 // Author: Ismaël
+date_default_timezone_set('America/Toronto');
 
 function field($name) {
 

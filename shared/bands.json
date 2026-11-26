@@ -1,0 +1,10 @@
+{
+  "default": "week",
+  "scales": [
+    { "name": "day",      "rangeHours": 24,   "ringHours": 4,   "coef": 4 },
+    { "name": "week",     "rangeHours": 168,  "ringHours": 24,  "coef": 3 },
+    { "name": "2 months", "rangeHours": 1344, "ringHours": 168, "coef": 2 },
+    { "name": "6 months", "rangeHours": 4380, "ringHours": 730, "coef": 1 }
+  ],
+  "farCoef": 0.5
+}
