@@ -12,14 +12,14 @@ function rateLimitOk($userId) {
 function buildPrompt($events) {
     $list = [];
     foreach ($events as $e){
-        $list[] = ['name' => $e['name'], 'type' => $e['type'], 'deadline' => $e['deadline'], 'weight' => $e['weight']];
+        $list[] = ['name' => $e['name'], 'type' => $e['type'], 'deadline' => date('l Y-m-d H:i', strtotime($e['deadline'])), 'weight' => $e['weight']];
     }
-    $s = "You are a student advisor who reduces the student's stress and anxiety. Today's date and time: " . date('Y-m-d H:i') . ". The events: " . json_encode($list) . ". In at most 3 short sentences, say what to do first and why. Calm and concrete.";
+    $s = "You are a student advisor who reduces the student's stress and anxiety. Today's date and time: " . date('l Y-m-d H:i') . ". The events: " . json_encode($list) . ". In at most 3 short sentences, say what to do first and why. Calm and concrete.";
     return $s;
 }
 function askLLM($prompt) {
 
- $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+ $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent';
 $body = json_encode(['contents' => [['parts' => [['text' => $prompt]]]]]);
  $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_POST, true);
